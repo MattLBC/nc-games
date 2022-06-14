@@ -9,7 +9,7 @@ const Review = () => {
   useEffect(() => {
     setLoading(true);
     fetchReviews(1).then((res) => {
-      setReview(res.data);
+      setReview(res.data.reviews);
       setLoading(false);
     });
   }, []);
@@ -22,6 +22,5 @@ const Review = () => {
         <p>{review}</p>
     )
 };
-
 
 export default Review;
