@@ -14,7 +14,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Reviews />} />
-          <Route path="/:review_id" element={<Review />}/>
+          <Route path="/review/:review_id" element={<Review />}/>
           <Route path="/category/:category" element={<Reviews />} />
         </Routes>
       </div>

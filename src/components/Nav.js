@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchCategories } from "./Api";
 import { Link } from "react-router-dom";
 
+
 const Nav = () => {
   const [categories, setCategories] = useState([]);
 
@@ -25,7 +26,9 @@ const Nav = () => {
           })}
         </div>
       </div>
-      <h1>Search box</h1>
+      <h1><span className="material-symbols-outlined">
+search
+</span></h1>
     </div>
   );
 };

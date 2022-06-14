@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchReviews } from "./Api";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Reviews = () => {
   const [loading, setLoading] = useState(true);
@@ -32,9 +33,15 @@ const Reviews = () => {
               key={review.review_id}
             >
               <div className="banner">
-                <h2 className="reviewTitle">{review.title}</h2>
+                <Link to={`/review/${review.review_id}`}>
+                  <h2 className="reviewTitle">{review.title}</h2>
+                </Link>
                 <div className="reviewInfo">
-                  Posted by: {review.owner} | {review.comment_count} Comments{" "}
+                  <span className="material-symbols-outlined">person</span>{" "}
+                  {review.owner} | {review.comment_count}{" "}
+                  <span className="material-symbols-outlined">forum</span> |{" "}
+                  {review.votes}{" "}
+                  <span className="material-symbols-outlined">grade</span>
                   <br></br> Created at: {review.created_at}
                 </div>
                 <p className="reviewUser">{review.review}</p>
