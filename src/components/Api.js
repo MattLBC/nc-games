@@ -9,3 +9,7 @@ export function fetchReviews(category) {
 export function fetchCategories(){
   return baseURL.get("/categories")
 }
+
+export function fetchReviewByID(review_id){
+  return baseURL.get("/reviews/" + review_id)
+}
