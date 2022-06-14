@@ -23,7 +23,6 @@ const Home = () => {
     <h1 className="title">Reviews</h1>
     <div className="reviews">
       {reviews.map((review) => {
-        console.log(review)
         return (
         <div className="reviewCard" style={{backgroundImage: `url(${review.review_img_url})`}} key={review.review_id}>
           <div className="banner">
