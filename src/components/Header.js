@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
-  return <h1 className="header">NC games</h1>;
+  return <Link to="/"><h1 className="header">NC Game</h1></Link>;
 };
 
 export default Header;

@@ -1,13 +1,11 @@
 const axios = require('axios');
 
-const baseURL = "https://boargames-backend.herokuapp.com/api/"
+const baseURL = axios.create({baseURL: "https://boargames-backend.herokuapp.com/api/"})
 
-export function fetchReviews(review_id) {
-  return axios({
-    method: 'get',
-    url: baseURL + 'reviews',
-    params: {
-      review_id: review_id
-    }
-  })
+export function fetchReviews(category) {
+  return baseURL.get("/reviews", {params: {category: category}})
+}
+
+export function fetchCategories(){
+  return baseURL.get("/categories")
 }
