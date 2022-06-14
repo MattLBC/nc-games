@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchReviewByID } from "./Api";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 const Review = () => {
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState([]);
   const { review_id } = useParams();
+
 
   useEffect(() => {
     setLoading(true);
@@ -30,10 +32,10 @@ const Review = () => {
             <span className="material-symbols-outlined">person</span>
             {review.owner}
           </p>
-          <p className="gameDesigner">Designer: {review.designer} | Category: {review.category}</p>
+          <p className="gameDesigner">Designer: {review.designer} | Category: {review.category.replace(/-/g, " ")}</p>
         </div>
         <p className="reviewBody">{review.review_body}</p>
-        <p> Posted: {review.created_at} </p>
+        <p> Posted: {`${dayjs(review.created_at)}`} </p>
         <p>
           {" "}
           <span className="material-symbols-outlined">grade</span>{" "}

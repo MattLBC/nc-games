@@ -3,6 +3,7 @@ import { fetchReviews } from "./Api";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 
 const Reviews = () => {
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ const Reviews = () => {
                   <span className="material-symbols-outlined">forum</span> |{" "}
                   {review.votes}{" "}
                   <span className="material-symbols-outlined">grade</span>
-                  <br></br> Created at: {review.created_at}
+                  <br></br> Posted at: {`${dayjs(review.created_at)}`}
                 </div>
                 <p className="reviewUser">{review.review}</p>
               </div>

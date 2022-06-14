@@ -14,7 +14,9 @@ html{
 
 a{
     text-decoration: none;
+    color: inherit;
 }
+
 
 .header{
     background-color: #0f0e17;
@@ -31,6 +33,7 @@ a{
 .catMenu{
     position: absolute;
     left: 0;
+    font-size: x-large;
 }
 
 .dropdown-content {
@@ -55,7 +58,7 @@ a{
 }
 
 .loadingBox{
-    margin-top: 10%;
+    margin-top: 15%;
 }
 .loading{
     color: #0f0e17;
@@ -108,13 +111,6 @@ a{
     border-radius: 10px;
 }
 
-@media screen and (max-width: 768px){
-    .reviewCard{
-        width: 100%;
-        height: 20rem;
-    }
-}
-
 .reviewContainer{
     display: flex;
     align-items: center;
@@ -141,6 +137,10 @@ a{
 }
 
 @media screen and (max-width: 768px){
+    .reviewCard{
+        width: 100%;
+        height: 20rem;
+    }
     .reviewContainer{
         display: flex;
         flex-direction: column-reverse;

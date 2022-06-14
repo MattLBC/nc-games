@@ -20,7 +20,7 @@ const Nav = () => {
           {categories.map((category) => {
             return (
               <Link to={`/category/${category.slug}`} key={`${category.slug}`}>
-                <p>{`${category.slug}`}</p>
+                <p>{`${category.slug.replace(/-/g, " ")}`}</p>
               </Link>
             );
           })}
