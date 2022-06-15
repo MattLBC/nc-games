@@ -146,12 +146,11 @@ a{
     text-align: left;
 }
 
- .reviewContainer button{
+ button{
     background-color: #ff8b06d0;
     color: #0f0e17;
     border: none;
     border-radius: 10px;
-    margin-top: 1rem;
     cursor: pointer;
     margin: 1rem;
     padding-top: 0.5rem;
@@ -160,12 +159,12 @@ a{
     padding-right: 2rem;
  }
 
-.reviewContainer button:hover{
+button:hover{
     background-color: #0f0e17;
     color: #ff8b06d0;
 }
 
-.reviewContainer button:disabled{
+button:disabled{
     background-color: #0f0e176e;
     color: #ff8b06d0;
 }
@@ -197,6 +196,33 @@ a{
     margin-left: 3rem;
     font-size: 1.2rem;
     padding: 6px;
+}
+
+.commentBanner{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.addComment{
+    margin: 0;
+    margin-right: 3rem;
+}
+
+.addComment:hover{
+    background-color: #0f0e17;
+    color: #ff8b06d0;
+}
+
+.voteContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.voteContainer button{
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 @media screen and (max-width: 768px){
