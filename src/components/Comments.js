@@ -12,6 +12,20 @@ const Comments = ({ review_id }) => {
     });
   }, []);
 
+  if (!comments) {
+    return (
+      <div className="commentsContainer">
+        <div className="commentBanner">
+          <h1 className="commentTitle">Comments</h1>
+          <button className="addComment">Add Comment</button>
+        </div>
+        <div className="commentCard">
+            <p className="commentBody">Be the first to comment!</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="commentsContainer">
       <div className="commentBanner">
