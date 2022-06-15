@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchReviewByID, patchReview } from "./Api";
+import Comments from "./Comments";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
@@ -52,6 +53,7 @@ const Review = () => {
   }
 
   return (
+    <>
     <div className="reviewContainer">
       <img className="reviewImg" src={`${review.review_img_url}`} />
       <div className="reviewContent">
@@ -97,6 +99,8 @@ const Review = () => {
         </div>
       </div>
     </div>
+    <Comments review_id={review_id}/>
+    </>
   );
 };
 
