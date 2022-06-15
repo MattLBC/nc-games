@@ -11,5 +11,9 @@ export function fetchCategories(){
 }
 
 export function fetchReviewByID(review_id){
-  return baseURL.get("/reviews/" + review_id)
+  return baseURL.get(`/reviews/${review_id}`)
+}
+
+export function patchReview(review_id, votes){
+  return baseURL.patch(`/reviews/${review_id}`, {inc_votes: votes})
 }

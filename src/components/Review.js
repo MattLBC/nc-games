@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchReviewByID } from "./Api";
+import { fetchReviewByID, patchReview } from "./Api";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
@@ -7,8 +7,10 @@ import dayjs from "dayjs";
 const Review = () => {
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState([]);
+  const [votes, setVotes] = useState(0);
+  const [upvote, setUpvote] = useState(false);
+  const [downvote, setDownvote] = useState(false);
   const { review_id } = useParams();
-
 
   useEffect(() => {
     setLoading(true);
@@ -17,6 +19,33 @@ const Review = () => {
       setLoading(false);
     });
   }, [review_id]);
+
+  const voteError = () => {
+    alert("Error voting");
+    setUpvote(false);
+    setDownvote(false);
+    setVotes(0);
+  };
+
+  const handleVote = (event, vote) => {
+    if (event.target.className === "upvote"){
+      setDownvote(false);
+      setUpvote(true);
+    } else {
+      setDownvote(true);
+      setUpvote(false);
+    }
+    setVotes(votes + vote);
+    patchReview(review_id, vote)
+      .then((res) => {
+        if (res.status !== 201) {
+          voteError()
+        }
+      })
+      .catch((err) => {
+        voteError()
+      });
+  };
 
   if (loading) {
     return <Loading />;
@@ -32,17 +61,40 @@ const Review = () => {
             <span className="material-symbols-outlined">person</span>
             {review.owner}
           </p>
-          <p className="gameDesigner">Designer: {review.designer} | Category: {review.category.replace(/-/g, " ")}</p>
+          <p className="gameDesigner">
+            Designer: {review.designer} | Category:{" "}
+            {review.category.replace(/-/g, " ")}
+          </p>
         </div>
         <p className="reviewBody">{review.review_body}</p>
         <p> Posted: {`${dayjs(review.created_at)}`} </p>
         <p>
           {" "}
           <span className="material-symbols-outlined">grade</span>{" "}
-          {review.votes} |{" "}
+          {review.votes + votes} |{" "}
           <span className="material-symbols-outlined">forum</span>{" "}
           {review.comment_count}
         </p>
+        <div className="votes">
+          <button
+            className="upvote"
+            disabled={upvote}
+            onClick={(event) => {
+              handleVote(event, 1);
+            }}
+          >
+            <span className="material-symbols-outlined">thumb_up</span>
+          </button>
+          <button
+            className="downvote"
+            disabled={downvote}
+            onClick={(event) => {
+              handleVote(event, -1);
+            }}
+          >
+            <span className="material-symbols-outlined">thumb_down</span>
+          </button>
+        </div>
       </div>
     </div>
   );
