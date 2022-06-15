@@ -69,7 +69,7 @@ const Review = () => {
           </p>
         </div>
         <p className="reviewBody">{review.review_body}</p>
-        <p> Posted: {`${dayjs(review.created_at)}`} </p>
+        <p className="reviewMeta"> Posted: {`${dayjs(review.created_at)}`} </p>
         <p>
           {" "}
           <span className="material-symbols-outlined">grade</span>{" "}

@@ -14,6 +14,7 @@ const Comments = ({ review_id }) => {
 
   return (
     <div className="commentsContainer">
+      <h1 className="commentTitle">Comments</h1>
       {comments.map((comment) => {
         return (
           <div className="commentCard" key={comment.comment_id}>
