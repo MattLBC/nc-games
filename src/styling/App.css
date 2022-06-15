@@ -153,8 +153,8 @@ a{
     margin: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
  }
 
 .reviewContainer button:hover{
@@ -163,9 +163,12 @@ a{
 }
 
 .reviewContainer button:disabled{
-    background-color: #0f0e17;
+    background-color: #0f0e176e;
     color: #ff8b06d0;
-    cursor: not-allowed;
+}
+
+.material-symbols-outlined{
+    pointer-events: none;
 }
 
 @media screen and (max-width: 768px){

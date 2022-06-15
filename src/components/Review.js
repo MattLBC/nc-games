@@ -8,6 +8,8 @@ const Review = () => {
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState([]);
   const [votes, setVotes] = useState(0);
+  const [upvote, setUpvote] = useState(false);
+  const [downvote, setDownvote] = useState(false);
   const { review_id } = useParams();
 
   useEffect(() => {
@@ -18,23 +20,30 @@ const Review = () => {
     });
   }, [review_id]);
 
-  const voteError = (event) => {
+  const voteError = () => {
     alert("Error voting");
-    event.target.disabled = false;
+    setUpvote(false);
+    setDownvote(false);
     setVotes(0);
   };
 
   const handleVote = (event, vote) => {
-    setVotes(vote);
-    event.target.disabled = true;
+    if (event.target.className === "upvote"){
+      setDownvote(false);
+      setUpvote(true);
+    } else {
+      setDownvote(true);
+      setUpvote(false);
+    }
+    setVotes(votes + vote);
     patchReview(review_id, vote)
       .then((res) => {
         if (res.status !== 201) {
-          voteError(event);
+          voteError()
         }
       })
       .catch((err) => {
-        voteError(event);
+        voteError()
       });
   };
 
@@ -69,6 +78,7 @@ const Review = () => {
         <div className="votes">
           <button
             className="upvote"
+            disabled={upvote}
             onClick={(event) => {
               handleVote(event, 1);
             }}
@@ -77,6 +87,7 @@ const Review = () => {
           </button>
           <button
             className="downvote"
+            disabled={downvote}
             onClick={(event) => {
               handleVote(event, -1);
             }}
