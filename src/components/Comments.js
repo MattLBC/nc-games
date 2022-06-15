@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getComments } from "./Api";
-import Loading from "./Loading";
+import { getComments, patchComments } from "./Api";
 import dayjs from "dayjs";
+import CommentForm from "./CommentForm";
 
 const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getComments(review_id).then((res) => {
@@ -22,6 +23,7 @@ const Comments = ({ review_id }) => {
         <div className="commentCard">
             <p className="commentBody">Be the first to comment!</p>
         </div>
+        <CommentForm  review_id={review_id}/>
       </div>
     );
   }
@@ -30,8 +32,9 @@ const Comments = ({ review_id }) => {
     <div className="commentsContainer">
       <div className="commentBanner">
         <h1 className="commentTitle">Comments</h1>
-        <button className="addComment">Add Comment</button>
+        <button className="addComment" onClick={() =>{setShowForm(!showForm)}}>Add Comment</button>
       </div>
+      <CommentForm  review_id={review_id}/>
       {comments.map((comment) => {
         return (
           <div className="commentCard" key={comment.comment_id}>
