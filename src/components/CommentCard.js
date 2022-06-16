@@ -7,12 +7,11 @@ import Loading from "./Loading";
 const CommentCard = ({ comment }) => {
   const [loading, setLoading] = useState(false)
   const [deleted, setDeleted] = useState(false)
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const handleDelete = (event) => {
     setLoading(true)
     setDeleted(false)
-    console.log(event.target.value)
     event.preventDefault();
     deleteComment(event.target.value).then((res) => {
       setDeleted(true)
@@ -45,7 +44,7 @@ const CommentCard = ({ comment }) => {
           <span className="material-symbols-outlined">thumb_down</span>
         </button>
       </div>
-      <button className="deleteBtn" value={comment.comment_id} onClick={(event) => {handleDelete(event)}}>Delete Comment</button>
+      {user.username === comment.author ? (<button className="deleteBtn" value={comment.comment_id} onClick={(event) => {handleDelete(event)}}>Delete Comment</button>) : null}
     </div>
   );
 };

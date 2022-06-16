@@ -8,13 +8,11 @@ const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res.data.comments);
     });
   }, []);
-
   if (!comments) {
     return (
       <div className="commentsContainer">
@@ -43,7 +41,7 @@ const Comments = ({ review_id }) => {
           Add Comment
         </button>
       </div>
-      <CommentForm review_id={review_id}/>
+      {showForm ? <CommentForm review_id={review_id} /> : null}
       {comments.map((comment) => {
         return <CommentCard comment={comment} />;
       })}

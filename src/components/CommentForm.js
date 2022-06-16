@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, useInsertionEffect } from "react";
 import { postComment, getUsers } from "./Api";
+import { UserContext } from "../context/User";
+import { Link } from "react-router-dom";
 import CommentCard from "./CommentCard";
 
 const CommentForm = ({ review_id }) => {
@@ -8,10 +10,12 @@ const CommentForm = ({ review_id }) => {
   const [users, setUsers] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [newComment, setNewComment] = useState({});
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     getUsers().then((res) => {
       setUsers(res.data.users);
+      setCommentAuthor(user.username);
     });
   }, []);
 
@@ -22,6 +26,21 @@ const CommentForm = ({ review_id }) => {
       setIsSubmitted(true);
     });
   };
+
+  if (commentAuthor === undefined) {
+    return (
+      <div>
+        <h2>
+          Please{" "}
+          <Link to="/login" className="loginLink">
+            login
+          </Link>{" "}
+          to comment
+        </h2>
+      </div>
+    );
+  }
+
   if (isSubmitted) {
     return (
       <div className="newComment">
@@ -33,25 +52,8 @@ const CommentForm = ({ review_id }) => {
 
   return (
     <form onSubmit={handleSumbit}>
-      <label>
-        {" "}
-        Username:
-        <select
-          onChange={(event) => {
-            setCommentAuthor(event.target.value);
-          }}
-        >
-          <option></option>
-          {users.map((user) => {
-            return (
-              <option key={user.username} value={user.username}>
-                {user.username}
-              </option>
-            );
-          })}
-        </select>
-      </label>
       <br></br>
+      <h3 className="commentUser">Comment as {user.username}</h3>
       <label>
         <textarea
           placeholder="Comment here!"
@@ -64,9 +66,7 @@ const CommentForm = ({ review_id }) => {
         ></textarea>
       </label>
       <br></br>
-      <button type="submit" disabled={commentAuthor.length === 0}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 };

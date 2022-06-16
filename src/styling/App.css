@@ -28,6 +28,16 @@ a{
     height: 5rem;
 }
 
+.user{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.loginContainer{
+    margin-top: 1rem;
+}
+
 .navbar-container{
     background-color: #0f0e17;
     color: #a7a9be;
@@ -242,9 +252,16 @@ button:disabled{
     margin-right: 3rem;
 }
 
+.viewCommentsBtn{
+    padding: 1rem 4rem;
+}
+
 .addComment:hover{
     background-color: #0f0e17;
     color: #ff8b06d0;
+}
+form .commentUser{
+    margin-left: 5.5rem;
 }
 
 .voteContainer{
@@ -262,6 +279,18 @@ button:disabled{
     border-color: #ff8b06d0;
 }
 
+.loginLink {
+    text-decoration: underline;
+}
+
+.loginLink:hover{
+    color: #ff8b06d0;
+}
+
+.errorImg{
+    width: 20rem;
+}
+
 form select{
     width: 30%;
     justify-content: left;
@@ -276,6 +305,11 @@ form textarea {
     border-radius: 5px;
     text-align: left;
     padding: 5px;
+}
+
+form input {
+    width: 35%;
+    font-size: large;
 }
 
 @media screen and (max-width: 768px){
@@ -317,5 +351,25 @@ form textarea {
         width: 6rem;
         font-size: small;
         padding: 3px;
+    }
+    .userIcon{
+        width: 20rem;
+        height: auto;
+    }
+    .user{
+        width: 10rem;
+        transform: rotate(90deg);
+        right: -2.5rem;
+        top: 3rem;
+    }
+    .addComment{
+        padding: 0.5rem;
+    }
+    form input {
+        width: 50%;
+        font-size: medium;
+    }
+    form .commentUser{
+        margin-left: 2.2rem;
     }
 }
