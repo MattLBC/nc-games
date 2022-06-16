@@ -8,15 +8,12 @@ const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const addComment = (newComment) => {
-    setComments([newComment, ...comments]);
-  };
 
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res.data.comments);
     });
-  }, [comments]);
+  }, []);
 
   if (!comments) {
     return (
@@ -28,7 +25,7 @@ const Comments = ({ review_id }) => {
         <div className="commentCard">
           <p className="commentBody">Be the first to comment!</p>
         </div>
-        <CommentForm review_id={review_id} addComment={addComment} />
+        <CommentForm review_id={review_id} />
       </div>
     );
   }
@@ -46,7 +43,7 @@ const Comments = ({ review_id }) => {
           Add Comment
         </button>
       </div>
-      <CommentForm review_id={review_id} addComment={addComment} />
+      <CommentForm review_id={review_id}/>
       {comments.map((comment) => {
         return <CommentCard comment={comment} />;
       })}

@@ -32,6 +32,11 @@ export function getUsers() {
   return baseURL.get("/users");
 }
 
+export function deleteComment(comment_id) {
+  return baseURL.delete(`/comments/${comment_id}`);
+}
+
 export function patchComments(comment_id, votes) {
   return baseURL.patch(`/comments/${comment_id}`, { inc_votes: votes });
 }
+

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Reviews from "./components/Reviews";
 import Review from "./components/Review";
+import NotFound from "./components/NotFound";
 import { useState } from "react";
 import { UserContext } from "./context/User";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -21,6 +22,7 @@ function App() {
             <Route path="/review/:review_id" element={<Review />} />
             <Route path="/category/:category" element={<Reviews />} />
             <Route path="/reviews/sort_by/:sort" element={<Reviews />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>
