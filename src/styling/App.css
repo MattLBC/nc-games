@@ -224,6 +224,25 @@ button:disabled{
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.newComment .commentCard{
+    border-color: #ff8b06d0;
+}
+
+form select{
+    width: 30%;
+    justify-content: left;
+    min-height: 2rem;
+    text-align: left;
+    justify-self: left;
+}
+
+form textarea {
+    width : 80%;
+    min-height: 4rem;
+    border-radius: 5px;
+    text-align: left;
+    padding: 5px;
+}
 
 @media screen and (max-width: 768px){
     .reviewCard{
