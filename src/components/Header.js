@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/BoardDom(5).png";
+import { useContext } from "react";
+import { UserContext } from "../context/User";
 
 const Header = () => {
   return (
-    <Link to="/">
-      <div className="header">
+    <div className="header">
+      <Link to="/">
         <img className="headerLogo" src={logo} alt="logo"></img>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

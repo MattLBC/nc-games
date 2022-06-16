@@ -3,22 +3,28 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Reviews from "./components/Reviews";
 import Review from "./components/Review";
-
+import { useState } from "react";
+import { UserContext } from "./context/User";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [user, setUser] = useState({});
+
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Reviews />} />
-          <Route path="/review/:review_id" element={<Review />}/>
-          <Route path="/category/:category" element={<Reviews />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <UserContext.Provider value={{user, setUser}}>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Reviews />} />
+            <Route path="/review/:review_id" element={<Review />} />
+            <Route path="/category/:category" element={<Reviews />} />
+            <Route path="/reviews/sort_by/:sort" element={<Reviews />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
