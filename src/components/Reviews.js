@@ -7,15 +7,24 @@ import dayjs from "dayjs";
 const Reviews = () => {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
-  const { category } = useParams();
+  const [descend, setDescend] = useState(true);
+  const { category, sort } = useParams();
+
+  let order = "";
+
+  if (descend) {
+    order = "desc";
+  } else {
+    order = "asc";
+  }
 
   useEffect(() => {
     setLoading(true);
-    fetchReviews(category).then((res) => {
+    fetchReviews(category, sort, order).then((res) => {
       setReviews(res.data.reviews);
       setLoading(false);
     });
-  }, [category]);
+  }, [category, sort, descend]);
 
   if (loading) {
     return <Loading />;
@@ -24,6 +33,14 @@ const Reviews = () => {
   return (
     <>
       <h1 className="title">Reviews</h1>
+      <button
+        className="order"
+        onClick={() => {
+          setDescend(!descend);
+        }}
+      >
+        {descend ? "Descending" : "Ascending"}
+      </button>
       <div className="reviews">
         {reviews.map((review) => {
           return (
