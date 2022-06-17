@@ -7,7 +7,6 @@ const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res.data.comments);

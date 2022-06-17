@@ -65,7 +65,7 @@ Returns different error pages for each eendpoint errors
 
 ### Additional functionality
 
-Users can log in to allow commenting 
+Can vote on reviews and comments, once per render.
 
 ---
 

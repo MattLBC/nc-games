@@ -15,9 +15,6 @@ const CommentForm = ({ review_id }) => {
     setCommentAuthor(user.username);
   }, [user]);
 
-
-
-
   const handleSumbit = (event) => {
     event.preventDefault();
     postComment(review_id, commentAuthor, commentBody).then((res) => {
@@ -41,6 +38,7 @@ const CommentForm = ({ review_id }) => {
   }
 
   if (isSubmitted) {
+    setTimeout(() => {setIsSubmitted(!isSubmitted)}, 3000);
     return (
       <div className="newComment">
         <h2>Comment Submitted!</h2>
