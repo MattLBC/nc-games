@@ -16,19 +16,21 @@ const Nav = () => {
     <div className="navbar-container">
       <ul className="dropdown">
         <li>
-          <i class="fa-solid fa-magnifying-glass"></i> Search
+          <i className="fa-solid fa-magnifying-glass"></i> Search
           <ul>
-            <li>
+            <li key="sort_by">
               Sort by
               <ul>
                 {sortBy.map((sort) => {
-                  return(
-                    <Link to={`/reviews/sort_by/${sort}`}><li>{`${sort.replace(/_/g, " ")}`}</li></Link>
-                  )
+                  return (
+                    <Link to={`/reviews/sort_by/${sort}`} key={`${sort}`}>
+                      <li>{`${sort.replace(/_/g, " ")}`}</li>
+                    </Link>
+                  );
                 })}
               </ul>
             </li>
-            <li>
+            <li key="categories">
               Categories
               <ul>
                 {categories.map((category) => {

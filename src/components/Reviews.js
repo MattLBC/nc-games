@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchReviews } from "./Api";
 import Loading from "./Loading";
+import NoCat from "./errors/NoCat";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
@@ -8,6 +9,7 @@ const Reviews = () => {
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
   const [descend, setDescend] = useState(true);
+  const [exists, setExists] = useState(true);
   const { category, sort } = useParams();
 
   let order = "";
@@ -20,14 +22,22 @@ const Reviews = () => {
 
   useEffect(() => {
     setLoading(true);
+    setExists(true);
     fetchReviews(category, sort, order).then((res) => {
       setReviews(res.data.reviews);
       setLoading(false);
-    });
+    }).catch((err) => {
+      setExists(false);
+      setLoading(false);
+    })
   }, [category, sort, descend]);
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (!exists) {
+    return <NoCat />;
   }
 
   return (

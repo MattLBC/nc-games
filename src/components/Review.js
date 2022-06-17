@@ -4,6 +4,7 @@ import Comments from "./Comments";
 import Loading from "./Loading";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import NoReview from "./errors/NoReview";
 
 const Review = () => {
   const [loading, setLoading] = useState(true);
@@ -11,6 +12,8 @@ const Review = () => {
   const [votes, setVotes] = useState(0);
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
+  const [exists, setExists] = useState(true);
+  const [showComments, setShowComments] = useState(false);
   const { review_id } = useParams();
 
   useEffect(() => {
@@ -18,7 +21,11 @@ const Review = () => {
     fetchReviewByID(review_id).then((res) => {
       setReview(res.data.review);
       setLoading(false);
-    });
+    }).catch((err) => {
+      console.log(err)
+      setExists(false);
+      setLoading(false);
+    })
   }, [review_id]);
 
   const handleVote = (event, vote) => {
@@ -50,6 +57,10 @@ const Review = () => {
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (!exists) {
+    return <NoReview />
   }
 
   return (
@@ -100,9 +111,12 @@ const Review = () => {
               <span className="material-symbols-outlined">thumb_down</span>
             </button>
           </div>
+          <button className="viewCommentsBtn" onClick={() => {
+            setShowComments(!showComments);
+          }}>View Comment</button>
         </div>
       </div>
-      <Comments review_id={review_id} />
+      {showComments ? <Comments review_id={review_id} /> : null}
     </>
   );
 };
