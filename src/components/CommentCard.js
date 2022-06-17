@@ -82,7 +82,6 @@ const CommentCard = ({ comment }) => {
         </p>
         <button
           className="downvote"
-          className="downvote"
           disabled={downvote}
           onClick={(event) => {
             handleVote(event, -1);
