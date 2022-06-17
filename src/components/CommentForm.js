@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext, useInsertionEffect } from "react";
-import { postComment, getUsers } from "./Api";
+import { useEffect, useState, useContext } from "react";
+import { postComment } from "./Api";
 import { UserContext } from "../context/User";
 import { Link } from "react-router-dom";
 import CommentCard from "./CommentCard";
@@ -7,17 +7,16 @@ import CommentCard from "./CommentCard";
 const CommentForm = ({ review_id }) => {
   const [commentBody, setCommentBody] = useState("");
   const [commentAuthor, setCommentAuthor] = useState("");
-  const [users, setUsers] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [newComment, setNewComment] = useState({});
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    getUsers().then((res) => {
-      setUsers(res.data.users);
-      setCommentAuthor(user.username);
-    });
-  }, []);
+    setCommentAuthor(user.username);
+  }, [user]);
+
+
+
 
   const handleSumbit = (event) => {
     event.preventDefault();

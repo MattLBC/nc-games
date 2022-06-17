@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getComments, patchComments } from "./Api";
-import dayjs from "dayjs";
+import { getComments } from "./Api";
 import CommentForm from "./CommentForm";
 import CommentCard from "./CommentCard";
 
@@ -13,6 +12,7 @@ const Comments = ({ review_id }) => {
       setComments(res.data.comments);
     });
   }, []);
+
   if (!comments) {
     return (
       <div className="commentsContainer">
