@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+# BoardDom - A react app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was built to be the frontend of my previously created API.
 
-## Available Scripts
+It utilises React.js, react-router-dom, Axios, dayjs and FontAweome
 
-In the project directory, you can run:
+---
+## Hosted frontend
 
-### `npm start`
+- https://elegant-begonia-da9051.netlify.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Repo and hosted backend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- https://github.com/MattLBC/backend-project-heroku 
+- https://boargames-backend.herokuapp.com/api  
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Available Endpoints
 
-### `npm run build`
+The available endpoints for the site
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### `/`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Home page of the site, displays all reviews.
+Can toggle ascending/descending (default is date posted)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### `/category/:category`
 
-### `npm run eject`
+Accessed through dropdown menu in the top left
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Allows users to filter by given category of boardgame
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `/reviews/sort_by/:sort_by`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Accessed through dropdown menu in the top left
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Allows users to filter by given sort choice
 
-## Learn More
+#### `/review/:review_id`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A page displaying a given review, associated image and info about the review. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Also has an optional comments section that can be viewed if desired. Controlled by toggle button.
 
-### Code Splitting
+If you are logged in you are also able to comment and delete comments you have posted. If not provides link to log in page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### `/login/`
 
-### Analyzing the Bundle Size
+Page that allows users to log in. User is stored in local storage so doesn't expire between sessions. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Also displays current logged in user and associated information.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Error endpoints
 
-### Advanced Configuration
+#### `/review/:invalid_review_id`
+#### `/reviews/sort_by/:invalid_category`
+#### `/*`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Returns different error pages for each eendpoint errors
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Additional functionality
 
-### `npm run build` fails to minify
+Users can log in to allow commenting 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Set-up 
+
+If you wish you use this repo locally you will need to do the following steps;
+
+---
+
+- ### Cloning
+
+Follow [this link](https://github.com/MattLBC/nc-games) to the github repo hosting the project.
+
+In your terminal navigate to the directory you wish to store the repo in, then run the following command
+
+```
+git clone REPO_URL_HERE
+```
+
+For any issues or further instructions please check the github docs on [cloning a repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+
+---
+
+- ### Dependencies 
+
+To install all dependencies required for the app to run use the following command;
+
+```
+npm install
+```
+
+Your package.json should now contain the following:
+
+```
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  }
+```
+If you are missing any packages, run the following for each package
+
+```
+npm install PACKAGE_NAME_HERE
+```
+
+For further info please view check the docs for each package.
+
+---
+
+
+### Minimum node version 
+- v17.6.0
