@@ -66,7 +66,7 @@ const Review = () => {
   return (
     <>
       <div className="reviewContainer">
-        <img className="reviewImg" src={`${review.review_img_url}`} />
+        <img className="reviewImg" alt="review" src={`${review.review_img_url}`} />
         <div className="reviewContent">
           <h1 className="reviewTitle">{review.title}</h1>
           <div className="reviewMeta">

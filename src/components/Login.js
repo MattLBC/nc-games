@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/User";
-import { Link } from "react-router-dom";
 import { getUsers } from "./Api";
 
 const Login = () => {
@@ -39,7 +38,7 @@ const Login = () => {
         <br></br>
         <h3>Real name: {user.name}</h3>
         <br></br>
-        <img className="userIcon" src={`${user.avatar_url}`} />
+        <img className="userIcon" alt="user profile" src={`${user.avatar_url}`} />
         <br></br>
         <button
           onClick={() => {

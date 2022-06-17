@@ -30,7 +30,7 @@ const Reviews = () => {
       setExists(false);
       setLoading(false);
     })
-  }, [category, sort, descend]);
+  }, [category, sort, descend, order]);
 
   if (loading) {
     return <Loading />;
