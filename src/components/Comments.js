@@ -7,11 +7,12 @@ const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
+
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res.data.comments);
     });
-  }, []);
+  }, [comments, review_id]);
 
   if (!comments) {
     return (
@@ -43,7 +44,7 @@ const Comments = ({ review_id }) => {
       </div>
       {showForm ? <CommentForm review_id={review_id} /> : null}
       {comments.map((comment) => {
-        return <CommentCard comment={comment} />;
+        return <CommentCard key={comment.comment_id} comment={comment} />;
       })}
     </div>
   );
